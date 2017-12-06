@@ -1,0 +1,14 @@
+.cc-grid{
+  display: grid;
+  width: 50%;
+}
+
+.cc-container{
+  width: 100%;
+}
+
+.cc-item{
+  margin: 1px;
+  border: 1px solid black;
+  background-color: inherit;
+}
