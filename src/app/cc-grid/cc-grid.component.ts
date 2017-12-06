@@ -17,4 +17,8 @@ export class CcGridComponent implements OnInit {
     el.style.backgroundColor = "blue";
   }
 
+  onResize(event){
+    console.log(event.target.innerWidth);
+  }
+
 }

@@ -8,7 +8,7 @@ import { NgStyle } from '@angular/common';
 })
 export class CcGridListComponent implements OnInit, AfterContentChecked {
 
-  colNum = 20;
+  colNum = 5;
   items = [];
   column = [];
   value = 'repeat(' + this.colNum + ', auto)';
