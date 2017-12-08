@@ -7,18 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CcGridComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  selectElement(){
-    let el = document.getElementById("cc-col1-row4");
-    el.style.backgroundColor = "blue";
-  }
-
-  onResize(event){
-    console.log(event.target.innerWidth);
-  }
+  //empty method. Triggers UI update to keep width and height of grid when window resizes
+  onResize(event){}
 
 }
