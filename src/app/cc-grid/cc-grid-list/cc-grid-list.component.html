@@ -1,5 +1,5 @@
 <div class="cc-grid" id="main-grid" [ngStyle]="style">
   <ng-container class="cc-container" *ngFor="let item of items; index as i" id="list-container">
-    <div class="cc-item" [ngStyle]="itemStyle" id="cc-col{{i + 1}}-row{{j + 1}}" *ngFor="let itm of item.col; index as j"></div>
+    <div class="cc-item" [ngStyle]="itemStyle" id="cc-col{{j + 1}}-row{{i + 1}}" *ngFor="let itm of item.col; index as j"></div>
   </ng-container>
 </div>

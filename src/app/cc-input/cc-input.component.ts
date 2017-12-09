@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CcParserService } from '../cc-parser.service';
-import { Statement } from '../statement/statement';
+import { CcParserService } from '../services/cc-parser.service';
+import { CcExecutorService } from '../services/cc-executor.service';
 
 @Component({
   selector: 'cc-input',
@@ -10,9 +10,11 @@ import { Statement } from '../statement/statement';
 export class CcInputComponent implements OnInit {
 
   codeParser: CcParserService;
+  codeExecutor: CcExecutorService;
 
-  constructor(parser: CcParserService) {
+  constructor(parser: CcParserService, executor: CcExecutorService) {
     this.codeParser = parser;
+    this.codeExecutor = executor;
   }
 
   ngOnInit() {
@@ -20,15 +22,10 @@ export class CcInputComponent implements OnInit {
 
   selectElement(code){
     let rawStatements = this.codeParser.parseStatements(code);
-    let statements = [];
     rawStatements.forEach(function(statement){
-      let type = this.codeParser.getType(statement);
-      let color = this.codeParser.getColor(statement);
-      statements.push(new Statement(type, 1, 1, color));
+      let parsedStatement = this.codeParser.getStatement(statement);
+      this.codeExecutor.execute(parsedStatement);
     }, this);
-    console.log(statements);
-    let el = document.getElementById("cc-col1-row1");
-    el.style.backgroundColor = code;
   }
 
 }
