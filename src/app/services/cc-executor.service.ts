@@ -16,12 +16,29 @@ export class CcExecutorService {
         this.paintDom(statement.colNum, statement.rowNum, statement.color);
         break;
       case "var":
-        this.color.push(new Variable(statement.name, this.removeBrackets(statement.color)));
+        this.assignVariable(statement.name, this.removeBrackets(statement.color));
         break;
       case "loop":
+        for(let i = statement.rowNum; i <= statement.endRow; i++){
+          for(let j = statement.colNum; j <= statement.endCol; j++){
+            this.paintDom(j, i, statement.color);
+          }
+        }
         break;
       default:
         alert("Oops! The beginning of your statement was not recognized. Try a 'make' statement, or try reading how to write a loop.");
+    }
+  }
+
+  private assignVariable(name: string, color: string){
+    let existingColor = this.color.filter(v => v.name == name);
+    if(existingColor.length === 0){
+      this.color.push(new Variable(name, color));
+    } else{
+      let idx = this.color.indexOf(existingColor[0]);
+      if(idx >= 0){
+        this.color[idx] = new Variable(name, color);
+      }
     }
   }
 

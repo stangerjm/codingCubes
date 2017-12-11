@@ -21,13 +21,29 @@ export class CcParserService {
   getStatement(code: string){
     let type = this.getType(code);
     let value = null;
+    let endCol = -1;
+    let endRow = -1;
+    let colNum;
+    let rowNum;
     if(type === "var"){
       value = this.getVarName(code);
     }
+    if(type === "loop"){
+      let snippet = code.substring(code.indexOf("(") + 1, code.indexOf(")")).split("to");
+      if(snippet.length === 2){
+        colNum = this.getCellNumber(snippet[0], "col");
+        rowNum = this.getCellNumber(snippet[0], "row");
+        endCol = this.getCellNumber(snippet[1], "col");
+        endRow = this.getCellNumber(snippet[1], "row");
+      } else{
+        alert("Error! Your loop contained too many or too few values in between the parenthesis. Try again!");
+      }
+    } else{
+      colNum = this.getCellNumber(code, "col");
+      rowNum = this.getCellNumber(code, "row");
+    }
     let color = this.getColor(code);
-    let colNum = this.getCellNumber(code, "col");
-    let rowNum = this.getCellNumber(code, "row");
-    return new Statement(type, rowNum, colNum, color, value);
+    return new Statement(type, rowNum, colNum, color, value, endCol, endRow);
   }
 
   private getVarName(statement: string){

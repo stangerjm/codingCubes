@@ -1,4 +1,10 @@
 <div class="int-container">
-  <textarea name="name" rows="8" cols="80" #textBox></textarea>
+  <textarea name="name" rows="8" cols="80" #textBox>var color = green;
+var color1 = blue;
+var color2 = yellow;
+make row 1 col 1 {color};
+make row 2 col 2 {color1};
+make row 3 col 3 {color2};
+loop (col 4 row 4 to col 5 row 5) red;</textarea>
   <button type="button" name="button" (click)="selectElement(textBox.value)">Click</button>
 </div>
